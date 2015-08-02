@@ -1,5 +1,6 @@
 package com.kushal.ameaava.adapter;
 
+import com.google.android.youtube.player.YouTubeIntents;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -8,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.kushal.ameaava.R;
 import com.kushal.ameaava.model.CardData;
@@ -41,9 +41,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v, new ViewHolder.IMyViewHolderClicks() {
             public void startMyActivity(View caller, int position) {
-//                Intent intent = new Intent(v.getContext(), StarInfo.class);
-//                intent.putExtra("position", position);
-//                v.getContext().startActivity(intent);
+                Intent intent = YouTubeIntents.createPlayVideoIntentWithOptions(v.getContext(), "8yHCyd4XC0k", true, false);
+                v.getContext().startActivity(intent);
             }
         });
         return vh;
@@ -87,9 +86,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             public void startMyActivity(View caller, int position);
         }
     }
-
-    // Replace the contents of a view (invoked by the layout manager)
-
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
