@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.kushal.ameaava.R;
 import com.kushal.ameaava.model.CardData;
@@ -53,11 +54,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+
+        holder.mVideoTitle.setText(cardDatas.get(position).getVideoTitle());
         Picasso.with(mContext)
-                .load(cardDatas.get(position).getVideoURL())
+                .load("http://img.youtube.com/vi/" + cardDatas.get(position).getVideoURL() + "/0.jpg")
 //                .placeholder(R.drawable.bird) // optional
 //                .error(R.drawable.bird)         // optional
-                .into(holder.mThumbNail);
+        .into(holder.mThumbNail);
 
     }
 
@@ -66,6 +69,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // each data item is just a string in this case
         public CardView mCardView;
         public ImageView mThumbNail;
+        public TextView mVideoTitle;
         public IMyViewHolderClicks mListener;
 
         public ViewHolder(View v, IMyViewHolderClicks listener) {
@@ -73,6 +77,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             mListener = listener;
             mCardView = (CardView) v.findViewById(R.id.card_view);
             mThumbNail = (ImageView) mCardView.findViewById(R.id.thumbNail);
+            mVideoTitle = (TextView) mCardView.findViewById(R.id.videoTitle);
             mCardView.setOnClickListener(this);
             v.setOnClickListener(this);
         }

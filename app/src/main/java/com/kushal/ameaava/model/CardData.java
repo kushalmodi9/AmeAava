@@ -5,10 +5,15 @@ package com.kushal.ameaava.model;
  */
 public class CardData {
 
-    private String videoURL;
+    private String videoTitle, videoURL;
 
-    public CardData(String videoURL) {
+    public CardData(String videoTitle, String videoURL) {
+        this.videoTitle = videoTitle;
         this.videoURL = videoURL;
+    }
+
+    public String getVideoTitle() {
+        return videoTitle;
     }
 
     public String getVideoURL() {
